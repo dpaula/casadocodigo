@@ -44,18 +44,17 @@
 
 				<h:outputLabel value="Autores" for="autores" />
 				<h:panelGrid columns="2">
-					<h:selectManyListbox value="#{adminLivrosBean.autoresId}"
-						converter="javax.faces.Integer" id="autores">
+					<h:selectManyListbox value="#{adminLivrosBean.livro.autores}"
+						converter="autorConverter" id="autores">
 						<f:selectItems value="#{adminLivrosBean.autores}" var="autor"
-							itemValue="#{autor.id}" itemLabel="#{autor.nome}" />
+							itemValue="#{autor}" itemLabel="#{autor.nome}" />
 					</h:selectManyListbox>
 					<h:message for="autores"></h:message>
 				</h:panelGrid>
 
 				<h:outputLabel value="Data Publicação" for="dataPublicacao" />
 				<h:panelGrid columns="2">
-					<h:inputText id="dataPublicacao" value="#{adminLivrosBean.livro.dataPublicacao}" >
-					</h:inputText>
+					<h:inputText id="dataPublicacao" value="#{adminLivrosBean.livro.dataPublicacao}" />
 					<h:message for="dataPublicacao"></h:message>
 				</h:panelGrid>
 
