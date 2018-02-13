@@ -54,8 +54,7 @@
 
 				<h:outputLabel value="Data Publicação" for="dataPublicacao" />
 				<h:panelGrid columns="2">
-					<h:inputText id="dataPublicacao" value="#{adminLivrosBean.livro.dataPublicacao.time}" >
-						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/> 
+					<h:inputText id="dataPublicacao" value="#{adminLivrosBean.livro.dataPublicacao}" >
 					</h:inputText>
 					<h:message for="dataPublicacao"></h:message>
 				</h:panelGrid>
