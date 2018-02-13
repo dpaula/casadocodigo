@@ -7,7 +7,7 @@
 
 <h:body>
 	<h1>Novo Livro</h1>
-	<h:form>
+	<h:form enctype="multipart/form-data">
 		<fieldset>
 			<legend>Dados do Livro</legend>
 			<h:panelGrid columns="2">
@@ -56,6 +56,12 @@
 				<h:panelGrid columns="2">
 					<h:inputText id="dataPublicacao" value="#{adminLivrosBean.livro.dataPublicacao}" />
 					<h:message for="dataPublicacao"></h:message>
+				</h:panelGrid>
+
+				<h:outputLabel value="Capa do livro" for="capaLivro" />
+				<h:panelGrid columns="2">
+					<h:inputFile id="capaLivro" value="#{adminLivrosBean.capaLivro}" />
+					<h:message for="capaLivro"></h:message>
 				</h:panelGrid>
 
 			</h:panelGrid>

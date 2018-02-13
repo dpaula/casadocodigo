@@ -1,7 +1,6 @@
 package br.com.lima.beans;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -9,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
 import br.com.lima.daos.LivroDao;
@@ -30,6 +30,8 @@ public class AdminLivrosBean {
 	@Inject
 	private FacesContext context;
 	
+	private Part capaLivro;
+	
 	
 	public List<Autor> getAutores() {
 		return this.autorDao.listar();
@@ -44,9 +46,11 @@ public class AdminLivrosBean {
 	}
 
 	@Transactional
-	public String salvar() {
+	public String salvar() throws IOException {
 		
 		dao.salvar(livro);
+		
+		capaLivro.write("/casadocodigo/livros/"+capaLivro.getSubmittedFileName());
 		
 		this.livro = new Livro();
 		
@@ -54,5 +58,19 @@ public class AdminLivrosBean {
 		context.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!"));
 		
 		return "/livros/lista?faces-redirect=true";
+	}
+
+	/**
+	 * @return the capaLivro
+	 */
+	public Part getCapaLivro() {
+		return capaLivro;
+	}
+
+	/**
+	 * @param capaLivro the capaLivro to set
+	 */
+	public void setCapaLivro(Part capaLivro) {
+		this.capaLivro = capaLivro;
 	}
 }
