@@ -12,6 +12,7 @@ import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
 import br.com.lima.daos.LivroDao;
+import br.com.lima.infra.FileSaver;
 import br.com.lima.models.Autor;
 import br.com.lima.models.Livro;
 
@@ -50,7 +51,9 @@ public class AdminLivrosBean {
 		
 		dao.salvar(livro);
 		
-		capaLivro.write("/casadocodigo/livros/"+capaLivro.getSubmittedFileName());
+		
+		FileSaver fileSaver = new FileSaver();
+		livro.setCapaPath(fileSaver.write(capaLivro, "livros"));
 		
 		this.livro = new Livro();
 		
