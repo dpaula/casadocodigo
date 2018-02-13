@@ -52,6 +52,14 @@
 					<h:message for="autores"></h:message>
 				</h:panelGrid>
 
+				<h:outputLabel value="Data Publicação" for="dataPublicacao" />
+				<h:panelGrid columns="2">
+					<h:inputText id="dataPublicacao" value="#{adminLivrosBean.livro.dataPublicacao.time}" >
+						<f:convertDateTime pattern="dd/MM/yyyy"/> 
+					</h:inputText>
+					<h:message for="dataPublicacao"></h:message>
+				</h:panelGrid>
+
 			</h:panelGrid>
 			<h:commandButton value="Cadastrar livro"
 				action="#{adminLivrosBean.salvar}" />

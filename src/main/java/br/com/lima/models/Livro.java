@@ -2,6 +2,7 @@ package br.com.lima.models;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -26,18 +29,21 @@ public class Livro {
 
 	@NotBlank
 	private String titulo;
-	
-	@Length(min=3)
+
+	@Length(min = 3)
 	private String descri;
-	
+
 	@DecimalMin("10")
 	private BigDecimal preco;
-	
+
 	@Min(50)
 	private Integer nPaginas;
 
+	@Temporal(TemporalType.DATE)
+	private Calendar dataPublicacao = Calendar.getInstance();
+
 	@ManyToMany
-	@Size(min=1)
+	@Size(min = 1)
 	@NotNull
 	private List<Autor> autores = new ArrayList<>();
 
@@ -129,6 +135,21 @@ public class Livro {
 	 */
 	public void setnPaginas(Integer nPaginas) {
 		this.nPaginas = nPaginas;
+	}
+
+	/**
+	 * @return the dataPublicacao
+	 */
+	public Calendar getDataPublicacao() {
+		return dataPublicacao;
+	}
+
+	/**
+	 * @param dataPublicacao
+	 *            the dataPublicacao to set
+	 */
+	public void setDataPublicacao(Calendar dataPublicacao) {
+		this.dataPublicacao = dataPublicacao;
 	}
 
 	/*
